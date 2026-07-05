@@ -23,7 +23,7 @@ Solving LeetCode problems is one of the best ways to prepare for technical inter
 **LeetSync Pro** bridges the gap by transforming your LeetCode workflow into an automated, AI-enhanced software engineering portfolio!
 
 ```
-   ┌──────────────────┐         1-Click / ⌘P          ┌──────────────────┐
+   ┌──────────────────┐         1-Click / ⌘P         ┌──────────────────┐
    │                  │ ────────────────────────────► │                  │
    │  LeetCode Page   │                               │  GitHub Repo     │
    │  (Accepted Code) │ ◄──────────────────────────── │  (Clean Folder & │
