@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeetSync</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- ═══ Header ═══ -->
+    <header class="header">
+      <div class="header-logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#logoGrad)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffa116" />
+                <stop offset="100%" stop-color="#ff6b00" />
+              </linearGradient>
+            </defs>
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+            <path d="M9 18c-4.51 2-5-2-7-2"/>
+          </svg>
+        </div>
+        <div class="header-text">
+          <h1>LeetSync</h1>
+          <span class="header-version">v1.0.0</span>
+        </div>
+      </div>
+      <div class="header-status" id="connection-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking…</span>
+      </div>
+    </header>
+
+    <!-- ═══ Tab Navigation ═══ -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="dashboard" id="tab-dashboard">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <button class="tab" data-tab="settings" id="tab-settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </button>
+    </nav>
+
+    <!-- ═══ Dashboard Tab ═══ -->
+    <div class="tab-content active" id="panel-dashboard">
+      <!-- Streak Card -->
+      <div class="card streak-card">
+        <div class="streak-info">
+          <div class="streak-flames" id="streak-flames">🔥</div>
+          <div class="streak-details">
+            <span class="streak-count" id="streak-count">0</span>
+            <span class="streak-label">day streak</span>
+          </div>
+        </div>
+        <div class="streak-stats">
+          <div class="stat">
+            <span class="stat-value" id="total-solved">0</span>
+            <span class="stat-label">Total Solved</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-value" id="this-week">0</span>
+            <span class="stat-label">This Week</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-value" id="today-count">0</span>
+            <span class="stat-label">Today</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Heatmap Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Submission Activity</h3>
+          <span class="card-subtitle" id="heatmap-range"></span>
+        </div>
+        <div class="heatmap-container">
+          <canvas id="heatmap-canvas" width="400" height="90"></canvas>
+        </div>
+        <div class="heatmap-legend">
+          <span class="legend-label">Less</span>
+          <div class="legend-cell" style="background: rgba(255,161,22,0.05)"></div>
+          <div class="legend-cell" style="background: rgba(255,161,22,0.25)"></div>
+          <div class="legend-cell" style="background: rgba(255,161,22,0.5)"></div>
+          <div class="legend-cell" style="background: rgba(255,161,22,0.75)"></div>
+          <div class="legend-cell" style="background: #ffa116"></div>
+          <span class="legend-label">More</span>
+        </div>
+      </div>
+
+      <!-- Difficulty Breakdown -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Difficulty Breakdown</h3>
+        </div>
+        <div class="difficulty-chart">
+          <div class="difficulty-bar-group">
+            <div class="difficulty-row">
+              <span class="diff-label easy">Easy</span>
+              <div class="diff-bar-track">
+                <div class="diff-bar diff-easy" id="bar-easy" style="width: 0%"></div>
+              </div>
+              <span class="diff-count" id="count-easy">0</span>
+            </div>
+            <div class="difficulty-row">
+              <span class="diff-label medium">Medium</span>
+              <div class="diff-bar-track">
+                <div class="diff-bar diff-medium" id="bar-medium" style="width: 0%"></div>
+              </div>
+              <span class="diff-count" id="count-medium">0</span>
+            </div>
+            <div class="difficulty-row">
+              <span class="diff-label hard">Hard</span>
+              <div class="diff-bar-track">
+                <div class="diff-bar diff-hard" id="bar-hard" style="width: 0%"></div>
+              </div>
+              <span class="diff-count" id="count-hard">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language Stats -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Languages Used</h3>
+        </div>
+        <div class="language-list" id="language-list">
+          <div class="empty-state">No submissions yet. Push a solution to get started!</div>
+        </div>
+      </div>
+
+      <!-- Recent Submissions -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Recent Submissions</h3>
+        </div>
+        <div class="recent-list" id="recent-list">
+          <div class="empty-state">Your recent pushes will appear here.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Settings Tab ═══ -->
+    <div class="tab-content" id="panel-settings">
+      <div class="card">
+        <div class="card-header">
+          <h3>GitHub Configuration</h3>
+        </div>
+        <form id="settings-form" class="settings-form">
+          <div class="field">
+            <label for="s-token">Personal Access Token</label>
+            <div class="input-group">
+              <input type="password" id="s-token" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+              <button type="button" class="input-toggle" id="toggle-token" title="Show/Hide">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-hint">Needs <code>repo</code> scope · <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank">Create token →</a></span>
+          </div>
+          <div class="field">
+            <label for="s-repo">Target Repository</label>
+            <input type="text" id="s-repo" placeholder="username/leetcode-solutions" />
+            <span class="field-hint">Format: <code>owner/repo-name</code></span>
+          </div>
+          <div class="field">
+            <label for="s-gemini">Gemini API Key <span class="optional">(optional)</span></label>
+            <input type="password" id="s-gemini" placeholder="AIzaSy..." autocomplete="off" />
+            <span class="field-hint">For AI README generation · <a href="https://aistudio.google.com/app/apikey" target="_blank">Get key →</a></span>
+          </div>
+          <button type="submit" class="primary-btn" id="save-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Save Configuration
+          </button>
+        </form>
+      </div>
+
+      <!-- Notifications Settings -->
+      <div class="card">
+        <div class="card-header">
+          <h3>🔔 Daily Challenge Reminder</h3>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <span class="toggle-label">Enable Notifications</span>
+            <span class="toggle-hint">Get reminded about the daily LeetCode challenge</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="notifications-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="field reminder-time-field" id="reminder-time-wrap">
+          <label for="reminder-time">Reminder Time</label>
+          <select id="reminder-time">
+            <option value="6">6:00 AM</option>
+            <option value="7">7:00 AM</option>
+            <option value="8">8:00 AM</option>
+            <option value="9" selected>9:00 AM</option>
+            <option value="10">10:00 AM</option>
+            <option value="12">12:00 PM</option>
+            <option value="18">6:00 PM</option>
+            <option value="20">8:00 PM</option>
+            <option value="21">9:00 PM</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Preferences</h3>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <span class="toggle-label">Hide Premium Icons</span>
+            <span class="toggle-hint">Remove LeetCode premium upsell badges</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="hide-premium-toggle" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Data Management -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Data</h3>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="secondary-btn" id="export-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export History
+          </button>
+          <button type="button" class="danger-btn" id="clear-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            Clear History
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <span>LeetSync v1.0.0</span>
+        <span>·</span>
+        <a href="https://github.com" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
